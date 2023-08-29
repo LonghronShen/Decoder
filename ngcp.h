@@ -24,32 +24,32 @@
 #ifndef NGCP_H_
 #define NGCP_H_
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <endian.h>
 #include <net/ethernet.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-#define OFFER  1
+#define OFFER 1
 #define ANSWER 2
 #define DELETE 3
 
 #ifdef __GNUC__
 /* GNU C */
-#define PACK_OFF __attribute__ ((__packed__));
+#define PACK_OFF __attribute__((__packed__));
 #endif
 
 struct msg_fake_sip {
-    char magic[20];
-    char *raw_sdp;
-    char a_number[20];
-    char b_number[20];
-    char call_id[256];
-    char from_tag[100];
-    char to_tag[100];
-    int comm_flag; // 1 answer 2 offer 3 delete
+  char magic[20];
+  char *raw_sdp;
+  char a_number[20];
+  char b_number[20];
+  char call_id[256];
+  char from_tag[100];
+  char to_tag[100];
+  int comm_flag; // 1 answer 2 offer 3 delete
 };
 
-struct msg_fake_sip *ngcp_parser(const u_char * payload,
+struct msg_fake_sip *ngcp_parser(const u_char *payload,
                                  const u_int16_t size_payload);
 
 #endif

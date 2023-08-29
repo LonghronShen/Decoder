@@ -4,7 +4,8 @@
    decoder: parsing and classification of traffic
    Copyright (C) 2016-2019 Michele Campus <michelecampus5@gmail.com>
 
-   Based on code from https://github.com/moonlight-stream/moonlight-common-c/blob/master/src/RtspParser.c
+   Based on code from
+https://github.com/moonlight-stream/moonlight-common-c/blob/master/src/RtspParser.c
 
    This file is part of decoder.
 
@@ -24,10 +25,10 @@
 #define RTSP_H
 
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
-#define RTSP_SUCCESS          0
+#define RTSP_SUCCESS 0
 #define RTSP_ERROR_NO_MEMORY -1
 #define RTSP_ERROR_MALFORMED -2
 
@@ -39,7 +40,7 @@
    - Request (from Client to Server)
    - Response (from Server to Client)
 **/
-#define REQUEST  0
+#define REQUEST 0
 #define RESPONSE 1
 
 /**
@@ -65,7 +66,8 @@
 /**
    :: Header Field Definitions ::
    Summary of the header fields used by RTSP (RFC 2326 RTSP 1.0)
-   - type "g" designates general request headers to be found in both requests and responses
+   - type "g" designates general request headers to be found in both requests
+and responses
    - type "R" designates request headers
    - type "r" designates response headers
    - type "e" designates entity header fields
@@ -117,35 +119,37 @@
    WWW-Authenticate     r      opt.      all
 */
 
-
 typedef struct _RTSP_MESSAGE {
-    char *cache_control; //
-    char *content_base; //
-    char *content_len; //
-    char *content_type; //
-    char *command; //
-    char *last_mod;
-    char *range;
-    char *protocol;
-    char *seq_num; //
-    char *server; //
-    char *session; //
-    char *status_code; //
-    char *transport; //
-    char *ua; //
-    char *uri; //
-    char msg_type;
-    /* list not complete: add new in needed */
-    char *sdp;
+  char *cache_control; //
+  char *content_base;  //
+  char *content_len;   //
+  char *content_type;  //
+  char *command;       //
+  char *last_mod;
+  char *range;
+  char *protocol;
+  char *seq_num;     //
+  char *server;      //
+  char *session;     //
+  char *status_code; //
+  char *transport;   //
+  char *ua;          //
+  char *uri;         //
+  char msg_type;
+  /* list not complete: add new in needed */
+  char *sdp;
 } rtsp_message;
 
-
 /* Prototype of functions */
-int rtsp_parser(const u_char *packet, int size_payload, char *json_buffer, int buffer_len);
+int rtsp_parser(const u_char *packet, int size_payload, char *json_buffer,
+                int buffer_len);
 int rtsp_message_parser(rtsp_message *msg, char *rtspMessage, int length);
-void create_rtsp_message(rtsp_message *msg, char *protocol, char *uri, char *command, char *seq_num,
-                         char *status_code, char *server, char *ua, char *cache_control, char *content_len,
-                         char *content_type, char *content_base, char *last_mod, char *range, char *session,
-                         char *transport, char msg_type, char *sdp);
+void create_rtsp_message(rtsp_message *msg, char *protocol, char *uri,
+                         char *command, char *seq_num, char *status_code,
+                         char *server, char *ua, char *cache_control,
+                         char *content_len, char *content_type,
+                         char *content_base, char *last_mod, char *range,
+                         char *session, char *transport, char msg_type,
+                         char *sdp);
 
 #endif

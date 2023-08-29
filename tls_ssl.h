@@ -24,14 +24,14 @@
 #ifndef TLS_SSL_H_
 #define TLS_SSL_H_
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <endian.h>
 #include <net/ethernet.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #ifdef __GNUC__
 /* GNU C */
-#define PACK_OFF __attribute__ ((__packed__));
+#define PACK_OFF __attribute__((__packed__));
 #endif
 
 /**
@@ -55,13 +55,11 @@
 **/
 
 // header tls/ssl (5 byte)
-struct header_tls_record
-{
-  u_int8_t  type;
+struct header_tls_record {
+  u_int8_t type;
   u_int16_t version;
   u_int16_t len;
 } PACK_OFF;
-
 
 /**
    The following headers are important to decode and extract handshake.
@@ -70,7 +68,7 @@ struct header_tls_record
    - Client Hello           -------->   - Server Hello
                                           Certificate S
                                           Server Key Exchange
-					  Server Hello Done
+                                          Server Hello Done
      Certificate C          <--------
      Client Key Exchange
      [Change Chipher Spec]
@@ -100,25 +98,23 @@ struct handshake_header {
    FINISHED                  20     0x14
 **/
 
-
 // CERTIFICATE REQUEST
 struct Cert_Req {
   u_int8_t type_count;
   u_int16_t types;
   u_int16_t dist_name_len;
-  //u_int8_t * dist_name;
+  // u_int8_t * dist_name;
 };
-
 
 // CLIENT KEY EXCHANGE
 struct client_key_exch {
   u_int8_t p_len;
-  u_int8_t * p_data;
+  u_int8_t *p_data;
 };
 
 /**** ALERT -TODO- ****/
 
 /* PRIVATE KEY */
-//const char * private_key = "cakey.pem";
+// const char * private_key = "cakey.pem";
 
 #endif
